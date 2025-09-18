@@ -5,14 +5,19 @@ import enTranslations from "./langs/en";
 import bgTranslations from "./langs/bg";
 import type { Translations } from "./langs/en";
 
-export type TranslationArgs = any[];
-type TranslationFn = (key: keyof Translations, ...args: TranslationArgs) => string;
+export type TranslationArgs = ReadonlyArray<string | number>;
+type StringLikeKeys<T> = {
+  [K in keyof T]: T[K] extends string ? K : never
+}[keyof T];
+
+type TranslationFn = (key: StringLikeKeys<Translations>, ...args: TranslationArgs) => string;
 
 interface SupportedLocale {
   key: "en" | "bg";
   label: string;
   flag: string;
 }
+
 
 interface I18nState {
   locale: SupportedLocale;
@@ -40,8 +45,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, [locale]);
 
   const t: TranslationFn = (key, ...args) => {
-    const value = translations[key] ?? key;
-    return args.reduce((acc, arg) => acc.replace("%s", arg), value);
+    const dict = translations as unknown as Record<string, string>;
+    let result = dict[key as string] ?? String(key as string);
+    for (const arg of args) {
+      result = result.replace("%s", String(arg));
+    }
+    return result;
   };
 
   return (

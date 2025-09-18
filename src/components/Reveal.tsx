@@ -1,6 +1,7 @@
 "use client";
 
 import { JSX, useEffect, useRef, useState } from "react";
+import type { ElementType } from "react";
 
 interface RevealProps {
 	children: React.ReactNode;
@@ -10,7 +11,7 @@ interface RevealProps {
 }
 
 export default function Reveal({ children, className = "", as = "div", delayMs = 0 }: RevealProps) {
-	const ref = useRef<HTMLElement | null>(null);
+	const ref = useRef<HTMLDivElement | null>(null);
 	const [visible, setVisible] = useState(false);
 
 	useEffect(() => {
@@ -31,14 +32,15 @@ export default function Reveal({ children, className = "", as = "div", delayMs =
 		return () => observer.disconnect();
 	}, []);
 
-	const Tag: any = as;
+	const Tag = as as ElementType;
 	return (
-		<Tag
-			ref={ref as any}
+		<div
+			ref={ref}
 			className={`reveal ${visible ? "reveal-visible" : ""} ${className}`}
 			style={{ animationDelay: visible ? `${delayMs}ms` : undefined }}
 		>
-			{children}
-		</Tag>
+			<Tag>{children}</Tag>
+		</div>
 	);
 }
+

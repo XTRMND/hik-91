@@ -646,8 +646,12 @@ function I18nProvider({ children }) {
         locale
     ]);
     const t = (key, ...args)=>{
-        const value = translations[key] ?? key;
-        return args.reduce((acc, arg)=>acc.replace("%s", arg), value);
+        const dict = translations;
+        let result = dict[key] ?? String(key);
+        for (const arg of args){
+            result = result.replace("%s", String(arg));
+        }
+        return result;
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(I18nContext.Provider, {
         value: {
@@ -659,7 +663,7 @@ function I18nProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/context/i18n-context.tsx",
-        lineNumber: 48,
+        lineNumber: 57,
         columnNumber: 5
     }, this);
 }

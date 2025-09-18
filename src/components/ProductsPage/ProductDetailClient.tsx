@@ -12,7 +12,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const [message, setMessage] = useState("");
   const { t } = useTranslation();
 
-  const openModal = (p: Product) => {
+  const openModal = () => {
     setIsModalOpen(true);
     setMessage(
       `${t('inquiry_prefill')}`

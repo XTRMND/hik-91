@@ -4,20 +4,23 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { ShoppingBag, Menu, X } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import type { Translations } from './context/langs/en';
 import { useTranslation, locales } from './context/i18n-context';
 
-const mainNav = [
+const mainNav: { title: keyof Translations; href: string }[] = [
   { title: "aboutUs", href: "/about" },
   { title: "news", href: "/news" },
   { title: "products", href: "/products" },
   { title: "contacts", href: "/contact" },
 ];
 
-const userNav = [
+const userNav: { title: keyof Translations; href: string; icon: keyof typeof userIconComponents }[] = [
   { title: "shop", href: "https://agropoint.bg/", icon: "ShoppingBag" },
 ];
 
-const userIconComponents: { [key: string]: any } = { ShoppingBag };
+const userIconComponents: Record<string, LucideIcon> = { ShoppingBag };
+
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,7 +45,7 @@ export default function Navbar() {
                     href={item.href}
                     className="flex items-center h-full text-white hover:text-[#27a0e3] transition-colors"
                   >
-                    {t(item.title as keyof typeof t)}
+                    {t(item.title)}
                   </Link>
                 </li>
               ))}
@@ -60,7 +63,7 @@ export default function Navbar() {
                   className="hidden lg:flex text-white items-center hover:text-[#27a0e3] transition-colors relative"
                 >
                   {Icon && <Icon className="h-6 w-6 mr-1"/>}
-                  {t(item.title as keyof typeof t)}
+                  {t(item.title)}
                 </Link>
               );
             })}
@@ -106,7 +109,7 @@ export default function Navbar() {
                     className="block px-4 py-2 text-sm text-white hover:text-[#27a0e3] hover:bg-transparent"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {t(item.title as keyof typeof t)}
+                    {t(item.title)}
                   </Link>
                 </li>
               ))}

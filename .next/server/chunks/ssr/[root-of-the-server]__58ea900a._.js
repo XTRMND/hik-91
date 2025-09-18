@@ -116,7 +116,6 @@ const siteConfig = {
     ogImage: "/og-image.jpg",
     description: "Водеща компания в производството на полимерни опаковки"
 };
-const baseUrl = process.env.NEXT_PUBLIC_WC_BASE_URL || 'https://hik91.bg';
 const mainNav = [
     {
         title: "aboutUs",
