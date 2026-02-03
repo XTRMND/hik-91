@@ -27,7 +27,7 @@ export default function Hero() {
 
 
 			<div className="relative z-10 container mx-auto px-4">
-				<div className="max-w-4xl mx-auto text-center">
+				<div className="max-w-8xl mx-auto text-center">
 
 					<div className="mb-8 animate-[slide-up_700ms_ease-out_150ms_backwards]">
 						<Image
@@ -40,14 +40,10 @@ export default function Hero() {
 						/>
 					</div>
 
-	
-					<h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-[slide-up_700ms_ease-out_250ms_backwards]">
+
+					<h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-[slide-up_700ms_ease-out_250ms_backwards]">
 						{t('homePageHeader')}
 					</h1>
-
-					<p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-[slide-up_700ms_ease-out_350ms_backwards]">
-						{t('homePageDescription')}
-					</p>
 
 
 					<div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-[slide-up_700ms_ease-out_450ms_backwards]">

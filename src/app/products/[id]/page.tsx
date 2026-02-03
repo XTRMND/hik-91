@@ -26,12 +26,12 @@ export default function ProductPage({ params }: PageProps) {
     images?: string[];
     category: string;
     features: string[];
-    applications?: string[]; 
+    applications?: string[];
     longDescription?: string;
     specs?: { label: string; value: string }[];
     contentHtml?: string;
   }
-  
+
   const products: Product[] = [
     {
       id: 1,
@@ -59,7 +59,9 @@ export default function ProductPage({ params }: PageProps) {
         { label: t('product1_specs_labe2'), value: t('product1_specs_value2') },
         { label: t('product1_specs_labe3'), value: t('product1_specs_value3') },
         { label: t('product1_specs_labe4'), value: t('product1_specs_value4') },
-        { label: t('product1_specs_labe5'), value: t('product1_specs_value5') }
+        { label: t('product1_specs_labe5'), value: t('product1_specs_value5') },
+        { label: t('product1_specs_labe6'), value: t('product1_specs_value6') },
+        { label: t('product1_specs_labe7'), value: t('product1_specs_value7') }
       ],
       contentHtml: `
         <h3>${t('product1_name')}</h3>

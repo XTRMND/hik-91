@@ -7,56 +7,134 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useTranslation } from '@/components/context/i18n-context';
+import { useEffect, useState } from "react";
+
+type ReviewCard = {
+	content: string;
+	author: string;
+	role?: string;
+	image: string;
+	background: string;
+	stars: number;
+};
+
+type GoogleReview = {
+	author_name: string;
+	profile_photo_url?: string;
+	rating: number;
+	text?: string;
+	text_en?: string;
+	relative_time_description?: string;
+	relative_time_description_en?: string;
+};
+
+const defaultBackgrounds = [
+	"/testimonials/bg1.png",
+	"/testimonials/bg2.png",
+	"/testimonials/bg3.png",
+	"/testimonials/bg4.png",
+	"/testimonials/bg5.png",
+	"/testimonials/bg6.png",
+];
 
 export default function Testimonials() {
-	const {t} =useTranslation();
+	const { t, locale } = useTranslation();
+	const [googleReviews, setGoogleReviews] = useState<ReviewCard[]>([]);
 
 	const testimonialsContent = {
 		items: [
-		  {
-			content: t('testimonial1_content'),
-			author: t('testimonial1_author'),
-			role: t('testimonial1_role'),
-			image: "/testimonials/pic1.png",
-			background: "/testimonials/bg1.png",
-			stars: 5,
-		  },
-		  {
-			content: t('testimonial2_content'),
-			author: t('testimonial2_author'),
-			role: t('testimonial2_role'),
-			image: "/testimonials/pic2.png",
-			background: "/testimonials/bg2.png",
-			stars: 5,
-		  },
-		  {
-			content: t('testimonial3_content'),
-			author: t('testimonial3_author'),
-			role: t('testimonial3_role'),
-			image: "/testimonials/pic3.png",
-			background: "/testimonials/bg3.png",
-			stars: 4,
-		  },
-		  {
-			content: t('testimonial4_content'),
-			author: t('testimonial4_author'),
-			role: t('testimonial4_role'),
-			image: "/testimonials/pic4.png",
-			background: "/testimonials/bg4.png",
-			stars: 5,
-		  },
-		  {
-			content: t('testimonial5_content'),
-			author: t('testimonial5_author'),
-			role: t('testimonial5_role'),
-			image: "/testimonials/pic5.png",
-			background: "/testimonials/bg5.png",
-			stars: 4,
-		  },
+			{
+				content: t('testimonial1_content'),
+				author: t('testimonial1_author'),
+				role: t('testimonial1_role'),
+				image: "/testimonials/pic1.png",
+				background: "/testimonials/bg1.png",
+				stars: 5,
+			},
+			{
+				content: t('testimonial2_content'),
+				author: t('testimonial2_author'),
+				role: t('testimonial2_role'),
+				image: "/testimonials/pic2.png",
+				background: "/testimonials/bg2.png",
+				stars: 5,
+			},
+			{
+				content: t('testimonial3_content'),
+				author: t('testimonial3_author'),
+				role: t('testimonial3_role'),
+				image: "/testimonials/pic3.png",
+				background: "/testimonials/bg3.png",
+				stars: 4,
+			},
+			{
+				content: t('testimonial4_content'),
+				author: t('testimonial4_author'),
+				role: t('testimonial4_role'),
+				image: "/testimonials/pic4.png",
+				background: "/testimonials/bg4.png",
+				stars: 5,
+			},
+			{
+				content: t('testimonial5_content'),
+				author: t('testimonial5_author'),
+				role: t('testimonial5_role'),
+				image: "/testimonials/pic5.png",
+				background: "/testimonials/bg5.png",
+				stars: 4,
+			},
 		],
-	  };
+	};
 
-	const testimonials = testimonialsContent;
+	useEffect(() => {
+		const controller = new AbortController();
+
+		const loadGoogleReviews = async () => {
+			try {
+				const response = await fetch("/google-reviews.json", {
+					signal: controller.signal,
+				});
+				if (!response.ok) {
+					setGoogleReviews([]);
+					return;
+				}
+				const data = await response.json();
+				const reviews = (data?.reviews ?? []) as GoogleReview[];
+
+				const mapped = reviews.map((review, index) => {
+					const localizedText =
+						locale.key === "en" && review.text_en?.trim()
+							? review.text_en
+							: review.text;
+					const localizedRole =
+						locale.key === "en" && review.relative_time_description_en?.trim()
+							? review.relative_time_description_en
+							: review.relative_time_description;
+
+					return {
+						content: localizedText?.trim() || "",
+						author: review.author_name,
+						role: localizedRole ?? "",
+						image: review.profile_photo_url || "/testimonials/pic1.png",
+						background: defaultBackgrounds[index % defaultBackgrounds.length],
+						stars: Math.round(review.rating),
+					};
+				});
+
+				setGoogleReviews(mapped);
+			} catch (error) {
+				if ((error as Error).name !== "AbortError") {
+					setGoogleReviews([]);
+				}
+			}
+		};
+
+		loadGoogleReviews();
+
+		return () => controller.abort();
+	}, [locale.key]);
+
+	const testimonials = googleReviews.length ? { items: googleReviews } : testimonialsContent;
 
 	return (
 		<section className="py-16 bg-black">
@@ -96,9 +174,11 @@ export default function Testimonials() {
 
 								<div className="flex flex-col items-center justify-between flex-1 w-full pt-14 pb-8 px-4 rounded-b-2xl">
 									<h4 className="font-bold text-lg text-white text-center">{testimonial.author}</h4>
-									<div className="text-[#27a0e3] text-xs mb-2 text-center">{testimonial.role}</div>
+									{testimonial.role ? (
+										<div className="text-[#27a0e3] text-xs mb-2 text-center">{testimonial.role}</div>
+									) : null}
 									<p className="text-gray-300 text-base mb-4 text-center max-w-[95%] mx-auto break-words whitespace-pre-line flex-1">
-										{testimonial.content}
+										{testimonial.content || t('testimonial_no_comment')}
 									</p>
 
 									<div className="flex justify-center gap-1 mt-auto mb-2">
@@ -116,4 +196,3 @@ export default function Testimonials() {
 		</section>
 	);
 }
- 

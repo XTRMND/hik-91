@@ -20,77 +20,77 @@ export interface Product {
 	images?: string[];
 	category: string;
 	features: string[];
-	applications?: string[]; 
+	applications?: string[];
 	longDescription?: string;
 	specs?: { label: string; value: string }[];
 	contentHtml?: string;
 }
 
 export default function BestSellingProducts() {
-	const {t}= useTranslation();
+	const { t } = useTranslation();
 
 	const products: Product[] = [
 		{
-		  id: 1,
-		  name: t('product1_name'),
-		  description: t('product1_description'),
-		  image: "/cta1.png",
-		  images: ["/cta1.png", "/cta2.png", "/cta3.png"],
-		  category: t('product1_category'),
-		  features: t('product1_features').split(', '),
-		  applications: t('product1_applications').split(', '),
+			id: 1,
+			name: t('product1_name'),
+			description: t('product1_description'),
+			image: "/cta1.png",
+			images: ["/cta1.png", "/cta2.png", "/cta3.png"],
+			category: t('product1_category'),
+			features: t('product1_features').split(', '),
+			applications: t('product1_applications').split(', '),
 		},
 		{
-		  id: 2,
-		  name: t('product2_name'),
-		  description: t('product2_description'),
-		  image: "/cta2.png",
-		  images: ["/cta2.png", "/cta1.png", "/cta4.png"],
-		  category: t('product2_category'),
-		  features: t('product2_features').split(', '),
-		  applications: t('product2_applications').split(', '),
+			id: 2,
+			name: t('product2_name'),
+			description: t('product2_description'),
+			image: "/cta2.png",
+			images: ["/cta2.png", "/cta1.png", "/cta4.png"],
+			category: t('product2_category'),
+			features: t('product2_features').split(', '),
+			applications: t('product2_applications').split(', '),
 		},
 		{
-		  id: 3,
-		  name: t('product3_name'),
-		  description: t('product3_description'),
-		  image: "/cta3.png",
-		  images: ["/cta3.png", "/cta2.png"],
-		  category: t('product3_category'),
-		  features: t('product3_features').split(', '),
-		  applications: t('product3_applications').split(', '),
+			id: 3,
+			name: t('product3_name'),
+			description: t('product3_description'),
+			image: "/cta3.png",
+			images: ["/cta3.png", "/cta2.png"],
+			category: t('product3_category'),
+			features: t('product3_features').split(', '),
+			applications: t('product3_applications').split(', '),
 		},
 		{
-		  id: 4,
-		  name: t('product4_name'),
-		  description: t('product4_description'),
-		  image: "/cta4.png",
-		  images: ["/cta4.png", "/cta1.png"],
-		  category: t('product4_category'),
-		  features: t('product4_features').split(', '),
-		  applications: t('product4_applications').split(', '),
+			id: 4,
+			name: t('product4_name'),
+			description: t('product4_description'),
+			image: "/cta4.png",
+			images: ["/cta4.png", "/cta1.png"],
+			category: t('product4_category'),
+			features: t('product4_features').split(', '),
+			applications: t('product4_applications').split(', '),
 		},
 		{
-		  id: 5,
-		  name: t('product5_name'),
-		  description: t('product5_description'),
-		  image: "/cta1.png",
-		  images: ["/cta1.png", "/cta2.png"],
-		  category: t('product5_category'),
-		  features: t('product5_features').split(', '),
-		  applications: t('product5_applications').split(', '),
+			id: 5,
+			name: t('product5_name'),
+			description: t('product5_description'),
+			image: "/cta1.png",
+			images: ["/cta1.png", "/cta2.png"],
+			category: t('product5_category'),
+			features: t('product5_features').split(', '),
+			applications: t('product5_applications').split(', '),
 		},
 		{
-		  id: 6,
-		  name: t('product6_name'),
-		  description: t('product6_description'),
-		  image: "/cta2.png",
-		  images: ["/cta2.png", "/cta3.png"],
-		  category: t('product6_category'),
-		  features: t('product6_features').split(', '),
-		  applications: t('product6_applications').split(', '),
+			id: 6,
+			name: t('product6_name'),
+			description: t('product6_description'),
+			image: "/cta2.png",
+			images: ["/cta2.png", "/cta3.png"],
+			category: t('product6_category'),
+			features: t('product6_features').split(', '),
+			applications: t('product6_applications').split(', '),
 		},
-	  ];
+	];
 
 	return (
 		<section className="py-20 bg-black">
@@ -135,7 +135,9 @@ export default function BestSellingProducts() {
 										<h3 className="text-xl font-bold text-white line-clamp-2 leading-snug min-h-[3.75rem]">
 											{product.name}
 										</h3>
-										<p className="text-gray-300 mt-2 line-clamp-3 min-h-[4.5rem]">{product.description}</p>
+										<p className="text-gray-300 mt-2 line-clamp-3 min-h-[4.5rem]" suppressHydrationWarning>
+											{product.description}
+										</p>
 									</div>
 								</div>
 							</div>

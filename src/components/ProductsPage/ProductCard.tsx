@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, ExternalLink } from "lucide-react";
 import { Product } from "@/config/content";
-import { useTranslation  } from "../context/i18n-context";
+import { useTranslation } from "../context/i18n-context";
 
 type Props = {
   product: Product;
@@ -13,7 +13,25 @@ type Props = {
 };
 
 export default function ProductCard({ product, onInquiry }: Props) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
+  const chips = (() => {
+    switch (product.id) {
+      case 1:
+        return [t('product1_application1'), t('product1_application2'), t('product1_application3')];
+      case 2:
+        return [t('product2_application1'), t('product2_application2'), t('product2_application3')];
+      case 3:
+        return [t('product3_applications_chip1'), t('product3_applications_chip2'), t('product3_applications_chip3')];
+      case 4:
+        return [t('product4_application1'), t('product4_application2'), t('product4_application3')];
+      case 5:
+        return [t('product5_application1'), t('product5_application2'), t('product5_application3')];
+      case 6:
+        return [t('product6_application1'), t('product6_application2'), t('product6_application3')];
+      default:
+        return [];
+    }
+  })();
   return (
     <div className="flex flex-col h-full bg-gray-900 rounded-xl overflow-hidden border border-gray-700 hover:border-[#27a0e3] transition-all duration-300 transform hover:-translate-y-1">
       <div className="relative h-64 overflow-hidden bg-gray-800/40">
@@ -36,34 +54,19 @@ export default function ProductCard({ product, onInquiry }: Props) {
         <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
           {product.name}
         </h3>
-        <p className="text-gray-300 mb-4 line-clamp-3 leading-relaxed">
+        <p className="text-gray-300 mb-4 line-clamp-3 leading-relaxed" suppressHydrationWarning>
           {product.description}
         </p>
 
-        <div className="mb-6">
-          <h4 className="text-[#27a0e3] font-semibold mb-2">
-            {t('characteristics')}
-          </h4>
-          <ul className="space-y-1">
-            {product.features.slice(0, 3).map((feature, index) => (
-              <li key={index} className="text-sm text-gray-300 flex items-center">
-                <span className="w-1.5 h-1.5 bg-[#27a0e3] rounded-full mr-2" />
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {Array.isArray(product.applications) && product.applications.length > 0 && (
+        {chips.length > 0 && (
           <div className="mb-6">
-            <h4 className="text-[#27a0e3] font-semibold mb-2">{t('applications')}</h4>
             <div className="flex flex-wrap gap-2">
-              {(product.applications ?? []).slice(0, 2).map((app, index) => (
+              {chips.map((chip) => (
                 <span
-                  key={index}
+                  key={chip}
                   className="text-xs bg-gray-800 text-[#27a0e3] px-2 py-1 rounded"
                 >
-                  {app}
+                  {chip}
                 </span>
               ))}
             </div>

@@ -1,0 +1,73 @@
+{
+  "reviews": [
+    {
+      "author_name": "Dimitar Musev",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a/ACg8ocIqhZqSvQ1BGBG0L0_lLIYlv0bbaTM1kvPwCZXXmVx6pPOzFw=w72-h72-p-rp-mo-br100",
+      "rating": 5,
+      "text": "Много сме доволни от качеството на продуктите и най-вече от агролес и UV добавка.",
+      "text_en": "We are very satisfied with the product quality, especially the agro-foil and UV additive.",
+      "publishTime": ""
+    },
+    {
+      "author_name": "Tsoni Petrov",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjW812gCKwPdezTraIhNI0fUyHpgtPC2-3G3f_8vYhHKDocBwBA=w72-h72-p-rp-mo-ba3-br100",
+      "rating": 5,
+      "text": "Обслужване и качество на продуктите - ТОП!",
+      "text_en": "Service and product quality are top!",
+      "relative_time_description": "",
+      "publishTime": ""
+    },
+    {
+      "author_name": "Anthony HipHopkins",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjW8PDBaiLFsUotlVUbYnEC2MDtKbE1Iq9WmsnWh26HU-ku-05PjFQ=w72-h72-p-rp-mo-ba3-br100",
+      "rating": 5,
+      "text": "Доволен съм от продуктите и обслужването.",
+      "text_en": "I am happy with the products and the service.",
+      "relative_time_description": "",
+      "publishTime": ""
+    },
+    {
+      "author_name": "Plamen Dechev",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjXPOzuub2ZvS7lLV540uxzyJYPGwYQFdZVRza2-nm7WkCfvjXnY=w72-h72-p-rp-mo-ba4-br100",
+      "rating": 5,
+      "text": "Много добри",
+      "text_en": "Very good.",
+      "relative_time_description": "",
+      "publishTime": ""
+    },
+    {
+      "author_name": "Georgi Ivanov",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjUWJMiUEsisMF4g0xmqE_ek7kWZdq-mi9sfl8X67ONHa7mfLz9s=w72-h72-p-rp-mo-ba2-br100",
+      "rating": 5,
+      "text": "Коректни и точни",
+      "text_en": "Correct and accurate.",
+      "relative_time_description": "",
+      "publishTime": ""
+    },
+    {
+      "author_name": "Nina Mandevska",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a/ACg8ocINMiFBOc-FPcLFjykCNgSkC-UPYck10ZoD2PLUVxitKICp8w=w72-h72-p-rp-mo-br100",
+      "rating": 5,
+      "text": "Полезно е...",
+      "text_en": "Helpful...",
+      "relative_time_description": "",
+      "publishTime": ""
+    },
+    {
+      "author_name": "Pepi Ushev",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a/ACg8ocKUUQAg6yxvRkw8ItRrCshoyArdOHqZn1hzovmwJXMGDlqqHA=w72-h72-p-rp-mo-ba2-br100",
+      "rating": 5,
+      "text": "Най добрите!!!",
+      "text_en": "The best!!!",
+      "relative_time_description": "",
+      "publishTime": ""
+    }
+  ],
+  "rating": 4,
+  "user_ratings_total": 101,
+  "source": "new",
+  "updatedAt": "2026-02-03T10:56:00.000Z",
+  "language": "bg",
+  "minRating": 5,
+  "limit": 7
+}

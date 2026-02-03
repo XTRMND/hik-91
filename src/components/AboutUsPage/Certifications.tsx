@@ -20,7 +20,7 @@ const CertCard = ({
 );
 
 export default function Certifications() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -40,7 +40,7 @@ export default function Certifications() {
             note={t('certificate1Note')}
           />
           <CertCard
-            title="ISO 22000:2005"
+            title="EuCertPlast"
             subtitle={t('certificate2Subtitle')}
             note={t('certificate2Note')}
           />
